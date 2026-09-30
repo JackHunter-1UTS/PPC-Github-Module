@@ -12,3 +12,12 @@ jobs:
       # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
+      
+      # Step 2: Update index.html
+      - name: Team leader index
+        run: sed -i '/<\/body>/i <p>Updated by Team Leader on '"$(date)"'</p>' index.html
+        if: github.actor == 'JackHunter-1UTS'
+      - name: Member 1 index
+        run: sed -i '/<\/body>/i <p>Updated by Member 1 on '"$(date)"'</p>' index.html
+        if: github.actor != 'JackHunter-1UTS'
+
